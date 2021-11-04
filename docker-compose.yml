@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  app-angular:
+    container_name: app-angular
+    build:
+      context: ./app-angular
+
+  app-react:
+    container_name: app-react
+    build:
+      context: ./app-react
+
+  app-vue:
+    container_name: app-vue
+    build:
+      context: ./app-vue
+
+  principal:
+    container_name: principal
+    ports:
+      - 80:80
+    depends_on:
+      - app-react
+      - app-vue
+      - app-angular
+    build:
+      context: .
